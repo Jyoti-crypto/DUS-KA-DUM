@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, jsonify, session
 import random, math, heapq
 
 app = Flask(__name__)
-app.secret_key = "dkd2_secret_2024"
+import os
+app.secret_key = os.environ.get("SECRET_KEY", "dkd2_secret_2024")
 
 QUESTIONS = [
     {"id":1,  "category":"Tech & Phones",  "q":"What percentage of students check their phone immediately after waking up?",          "ans":72},
