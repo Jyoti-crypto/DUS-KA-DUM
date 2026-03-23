@@ -1,8 +1,8 @@
+import os
 from flask import Flask, render_template, request, jsonify, session
 import random, math, heapq
 
 app = Flask(__name__)
-import os
 app.secret_key = os.environ.get("SECRET_KEY", "dkd2_secret_2024")
 
 QUESTIONS = [
@@ -331,4 +331,6 @@ def bayes():
     life=s.get("lifelines",{}); ll=sum(1 for v in life.values() if v)
     return jsonify(bayes_advice(s["q_index"],ll,s.get("streak",0)))
 
-if __name__=="__main__": app.run(debug=True,port=5000)
+if __name__=="__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
